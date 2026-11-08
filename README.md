@@ -15,8 +15,8 @@ One command, `allwork`, that takes any task to a checked result. It reviews the 
 
 ## Requirements
 
-- A Claude plan with skills enabled. Skills work on Free, Pro, Max, Team and Enterprise; code execution must be on.
-- For the council: the Claude in Chrome extension, and signed-in Perplexity and Gemini accounts in that browser.
+- **A Claude Pro plan or higher** (Pro, Max, Team or Enterprise), with skills enabled and code execution turned on.
+- For the council: the Claude in Chrome extension, which Anthropic offers on paid plans, and signed-in Perplexity and Gemini accounts in that browser. The Free plan can install skills but cannot run the council.
 - The [ponytail](https://github.com/DietrichGebert/ponytail) skill (MIT). Rule 9 makes it mandatory for any coding step.
 
 ## Install
