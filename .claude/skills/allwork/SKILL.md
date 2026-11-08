@@ -66,6 +66,7 @@ description: "Single command for any task: council review you can watch in your 
 11. **Check Council Answers Against Sources:**
    - Any council claim about the user's own product, files or an official tool is checked against the user's source material or the official docs before it is used.
    - A claim that is contradicted or cannot be verified is left out and listed under Conflicts in the summary.
+   - "Not supported by the source" is not the same as "false". Mark such a claim `unverified`, keep it out unless it is confirmed elsewhere, and only call a claim false when a source contradicts it.
 
 12. **Public-Release Mode:**
    - When the output will be public (a repo, a reel, a post, a download), remove personal examples (names of personal skills, accounts, private paths), check the licence and name with the user, and note any identity or branding decision that is still open.
@@ -125,6 +126,7 @@ Operate the real tools (see Step 0). Send only the task text, with no private da
 5. **Safety on external tools:** never create an account, never enter credentials, never pay, accept terms or grant permissions without the user's yes (Rule 3), and use free tiers unless the user approves a cost. Private data never goes to an external tool (Rule 1).
 6. **Proof for web tools:** any AI website operated in the browser gets the same proof as Rule 8: a screenshot of the finished result, the exact input sent and a one-line summary.
 7. **Never ask the user which tool to use** when discovery can answer it. Report the choice and the reason in the summary, and let them override it.
+8. **Go by what is on screen.** When operating a web tool, read what the page actually shows (screenshot or page text) before reporting a result. If the page shows an error, a sign-in wall or a missing feature, report that, never what was expected.
 
 **Starter table (known good defaults, not a limit).** Use these when they are the best fit, and replace them whenever discovery finds something better.
 
@@ -162,7 +164,7 @@ The table is only a starting point. NotebookLM, Grok, DeepSeek and any other AI 
 
 ### Step 5: Final Check & Iteration Loop
 1. Evaluate the produced output point-by-point against the original task prompt, plus the pass criteria for its task type (below). Run this check on a model at least as strong as the one that produced the output.
-2. Produce a **Fix List** of any remaining errors, missing points, or rule violations. Make each item specific (what is wrong, where, what it should be).
+2. Produce a **Fix List** of any remaining errors, missing points, or rule violations. Make each item specific (what is wrong, where, what it should be). Mark each item `fixable by rerun` or `needs your decision`. Items that need the user's decision (a name, a licence, a taste choice, a permission) are raised with the user immediately and are not spent on reruns.
 3. Decision Logic:
    - **No Fixes Needed:** Output passed. Break loop and deliver to user.
    - **Fixes Needed (Loop Count < 3):** Re-run the full flow (Steps 2 to 4, skipping Step 2 for small tasks) with the Fix List passed in, so the analysis targets those specific items. Move up one model tier for the re-run (Haiku to Sonnet to Opus) unless already at Opus or above. Increment Loop Count.
@@ -201,6 +203,7 @@ When completing an `allwork` run, summarize your execution using this structure.
 - **Tools Used:** [Tools chosen from everything available, with a one-line reason each]
 - **Skills Activated:** [List of custom & built-in skills used; for coding tasks, `ponytail` must appear here]
 - **Models Used:** [Model per step, with a one-line reason]
+- **Created Items:** [Anything created outside the chat during the run (designs, notebooks, chats, files, repos) and where it lives, so the user can delete it]
 
 ---
 
